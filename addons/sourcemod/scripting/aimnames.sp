@@ -20,9 +20,9 @@
 #define AUTOLOAD_EXTENSIONS
 #define REQUIRE_EXTENSIONS
 
-#define TF2_PLAYERCOND_DISGUISING			(1<<2)
+#define TF2_PLAYERCOND_DISGUISING		(1<<2)
 #define TF2_PLAYERCOND_DISGUISED    	(1<<3)
-#define TF2_PLAYERCOND_SPYCLOAK				(1<<4)
+#define TF2_PLAYERCOND_SPYCLOAK			(1<<4)
 
 /*=================================
 =            Constants            =
