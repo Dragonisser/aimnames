@@ -1,4 +1,5 @@
 /*
+  0.9 - Update to new SM syntax
   0.8 - Changed the client pref cookie for health from being set to disabled by default, to enabled by default.
   0.7 - Fixed issue with showing names while in spectate.
   0.6 - Added cvar for the repeat timer interval. 
