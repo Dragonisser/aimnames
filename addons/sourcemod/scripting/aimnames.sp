@@ -1,4 +1,5 @@
 /*
+  0.9 - Update to new SM syntax
   0.8 - Changed the client pref cookie for health from being set to disabled by default, to enabled by default.
   0.7 - Fixed issue with showing names while in spectate.
   0.6 - Added cvar for the repeat timer interval. 
@@ -240,20 +241,26 @@ public void OnClientPostAdminCheck(int client)
 }
 
 public void OnClientCookiesCached(int client) {
-	char sEnabled[2];
-	char sColor[4];
-	char sShowHealth[2];
-	GetClientCookie(client, g_hCookie_Enabled, sEnabled, sizeof(sEnabled));
-	GetClientCookie(client, g_hCookie_Color, sColor, sizeof(sColor));
-	GetClientCookie(client, g_hCookie_ShowHealth, sShowHealth, sizeof(sShowHealth));
-	g_aPlayers[client].bHudEnabled = !view_as<bool>(StringToInt(sEnabled));
-	g_aPlayers[client].bHealthEnabled = !view_as<bool>(StringToInt(sShowHealth));
-	g_aPlayers[client].eColor = view_as<e_ColorNames>(StringToInt(sColor));
-	
-	if (!g_aPlayers[client].bHudEnabled)
-	{
-		ClearTimer(g_aPlayers[client].hHudTimer);
+	if (g_bUseClientprefs) {
+
+		char sEnabled[2];
+		char sColor[4];
+		char sShowHealth[2];
+
+		GetClientCookie(client, g_hCookie_Enabled, sEnabled, sizeof(sEnabled));
+		GetClientCookie(client, g_hCookie_Color, sColor, sizeof(sColor));
+		GetClientCookie(client, g_hCookie_ShowHealth, sShowHealth, sizeof(sShowHealth));
+		g_aPlayers[client].bHudEnabled = !view_as<bool>(StringToInt(sEnabled));
+		g_aPlayers[client].bHealthEnabled = !view_as<bool>(StringToInt(sShowHealth));
+		g_aPlayers[client].eColor = view_as<e_ColorNames>(StringToInt(sColor));
+		
+		if (!g_aPlayers[client].bHudEnabled)
+		{
+			ClearTimer(g_aPlayers[client].hHudTimer);
+		}
 	}
+
+
 }
 
 public void OnClientDisconnect(int client) {
