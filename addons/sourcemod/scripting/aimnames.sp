@@ -375,6 +375,7 @@ public int Menu_CookieSettings(Handle menu, MenuAction action, int param1, int p
 	{
 		CloseHandle(menu);
 	}
+	return 0;
 }
 
 public int Menu_CookieSettingsEnable(Handle menu, MenuAction action, int param1, int param2)
@@ -418,6 +419,7 @@ public int Menu_CookieSettingsEnable(Handle menu, MenuAction action, int param1,
 	{
 		CloseHandle(menu);
 	}
+	return 0;
 }
 
 public int Menu_CookieHealthEnable(Handle menu, MenuAction action, int param1, int param2)
@@ -451,6 +453,7 @@ public int Menu_CookieHealthEnable(Handle menu, MenuAction action, int param1, i
 	{
 		CloseHandle(menu);
 	}
+	return 0;
 }
 
 public int Menu_CookieSettingsColors(Handle menu, MenuAction action, int param1, int param2)
@@ -502,6 +505,7 @@ public int Menu_CookieSettingsColors(Handle menu, MenuAction action, int param1,
 	{
 		CloseHandle(menu);
 	}
+	return 0;
 }
 
 public void Cvar_Changed(Handle convar, const char[] oldValue, const char[] newValue)
@@ -657,7 +661,7 @@ stock void ClearTimer(Handle timer)
 {
 	if (timer != INVALID_HANDLE)
 	{
-		KillTimer(timer);
+		delete timer;
 	}
 	timer = INVALID_HANDLE;
 }
