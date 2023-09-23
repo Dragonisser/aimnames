@@ -241,20 +241,26 @@ public void OnClientPostAdminCheck(int client)
 }
 
 public void OnClientCookiesCached(int client) {
-	char sEnabled[2];
-	char sColor[4];
-	char sShowHealth[2];
-	GetClientCookie(client, g_hCookie_Enabled, sEnabled, sizeof(sEnabled));
-	GetClientCookie(client, g_hCookie_Color, sColor, sizeof(sColor));
-	GetClientCookie(client, g_hCookie_ShowHealth, sShowHealth, sizeof(sShowHealth));
-	g_aPlayers[client].bHudEnabled = !view_as<bool>(StringToInt(sEnabled));
-	g_aPlayers[client].bHealthEnabled = !view_as<bool>(StringToInt(sShowHealth));
-	g_aPlayers[client].eColor = view_as<e_ColorNames>(StringToInt(sColor));
-	
-	if (!g_aPlayers[client].bHudEnabled)
-	{
-		ClearTimer(g_aPlayers[client].hHudTimer);
+	if (g_bUseClientprefs) {
+
+		char sEnabled[2];
+		char sColor[4];
+		char sShowHealth[2];
+
+		GetClientCookie(client, g_hCookie_Enabled, sEnabled, sizeof(sEnabled));
+		GetClientCookie(client, g_hCookie_Color, sColor, sizeof(sColor));
+		GetClientCookie(client, g_hCookie_ShowHealth, sShowHealth, sizeof(sShowHealth));
+		g_aPlayers[client].bHudEnabled = !view_as<bool>(StringToInt(sEnabled));
+		g_aPlayers[client].bHealthEnabled = !view_as<bool>(StringToInt(sShowHealth));
+		g_aPlayers[client].eColor = view_as<e_ColorNames>(StringToInt(sColor));
+		
+		if (!g_aPlayers[client].bHudEnabled)
+		{
+			ClearTimer(g_aPlayers[client].hHudTimer);
+		}
 	}
+
+
 }
 
 public void OnClientDisconnect(int client) {
@@ -369,6 +375,7 @@ public int Menu_CookieSettings(Handle menu, MenuAction action, int param1, int p
 	{
 		CloseHandle(menu);
 	}
+	return 0;
 }
 
 public int Menu_CookieSettingsEnable(Handle menu, MenuAction action, int param1, int param2)
@@ -412,6 +419,7 @@ public int Menu_CookieSettingsEnable(Handle menu, MenuAction action, int param1,
 	{
 		CloseHandle(menu);
 	}
+	return 0;
 }
 
 public int Menu_CookieHealthEnable(Handle menu, MenuAction action, int param1, int param2)
@@ -445,6 +453,7 @@ public int Menu_CookieHealthEnable(Handle menu, MenuAction action, int param1, i
 	{
 		CloseHandle(menu);
 	}
+	return 0;
 }
 
 public int Menu_CookieSettingsColors(Handle menu, MenuAction action, int param1, int param2)
@@ -496,6 +505,7 @@ public int Menu_CookieSettingsColors(Handle menu, MenuAction action, int param1,
 	{
 		CloseHandle(menu);
 	}
+	return 0;
 }
 
 public void Cvar_Changed(Handle convar, const char[] oldValue, const char[] newValue)
@@ -651,7 +661,7 @@ stock void ClearTimer(Handle timer)
 {
 	if (timer != INVALID_HANDLE)
 	{
-		KillTimer(timer);
+		delete timer;
 	}
 	timer = INVALID_HANDLE;
 }
