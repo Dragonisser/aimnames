@@ -1,13 +1,14 @@
 /*
-  0.9 - Update to new SM syntax
-  0.8 - Changed the client pref cookie for health from being set to disabled by default, to enabled by default.
-  0.7 - Fixed issue with showing names while in spectate.
-  0.6 - Added cvar for the repeat timer interval.
-  0.5 - Added cvars for distance and for the hudtext hold/refresh time. Lowered the default values a bit.
-  0.4 - Added multi-game support.  Thx to Antithasys again, using CanSeeTarget code in replace of GetClientAimTarget. Fixed issue of seeing players names through map.
-  0.3 - Complete recode by Antithasys. Now uses client prefs. Admin only cvar, and added health cvar. Distance now set to 2000.
-  0.2 - Fixed it showing cloaked/disguised enemy spies. Lowered timer interval slightly.
-  0.1	- Initial Release.
+  0.9.1 - Fixes
+  0.9.0 - Update to new SM syntax
+  0.8.0 - Changed the client pref cookie for health from being set to disabled by default, to enabled by default.
+  0.7.0 - Fixed issue with showing names while in spectate.
+  0.6.0 - Added cvar for the repeat timer interval.
+  0.5.0 - Added cvars for distance and for the hudtext hold/refresh time. Lowered the default values a bit.
+  0.4.0 - Added multi-game support.  Thx to Antithasys again, using CanSeeTarget code in replace of GetClientAimTarget. Fixed issue of seeing players names through map.
+  0.3.0 - Complete recode by Antithasys. Now uses client prefs. Admin only cvar, and added health cvar. Distance now set to 2000.
+  0.2.0 - Fixed it showing cloaked/disguised enemy spies. Lowered timer interval slightly.
+  0.1.0	- Initial Release.
 */
 
 #pragma semicolon 1
@@ -32,7 +33,7 @@
 #define PLUGIN_NAME				  "Aim Names"
 #define PLUGIN_AUTHOR			  "MCG-retsam, Antithasys, dragonisser"
 #define PLUGIN_DESC				  "Shows enemy names when crosshair is placed on them."
-#define PLUGIN_VERSION			  "0.9"
+#define PLUGIN_VERSION			  "0.9.1"
 #define PLUGIN_URL				  "https://github.com/Dragonisser/aimnames"
 #define PLUGIN_PREFIX			  "[AN]"
 
