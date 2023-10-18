@@ -129,7 +129,7 @@ public void OnPluginStart() {
 	g_Cvar_Health		 = CreateConVar("sm_aimnames_health", "1", "Enable/Disable admins viewing players health.");
 	g_Cvar_Holdtime		 = CreateConVar("sm_aimnames_holdtime", "0.4", "(Default: 0.4) The hudtext number of seconds to hold/refresh the text.");
 	g_Cvar_Distance		 = CreateConVar("sm_aimnames_distance", "100.0", "(Default: 100) Distance in meters for showing aim names.");
-	g_Cvar_TimerInterval = CreateConVar("sm_aimnames_timerinterval", "0.3", "(Default: 0.3) Repeat timer interval. Time in seconds between execing the timer function.");
+	g_Cvar_TimerInterval = CreateConVar("sm_aimnames_timerinterval", "0.3", "(Default: 0.3) Repeat timer interval. Time in seconds between executing the timer function.");
 
 	HookConVarChange(g_Cvar_Enabled, Cvar_Changed);
 	HookConVarChange(g_Cvar_Color, Cvar_Changed);
@@ -288,7 +288,7 @@ public Action Timer_SyncHud(Handle timer, int client) {
 			}
 		}
 	} else {
-		g_aPlayers[client].hHudTimer = INVALID_HANDLE;
+		g_aPlayers[client].hHudTimer = null;
 		return Plugin_Stop;
 	}
 	return Plugin_Continue;
@@ -336,7 +336,7 @@ public int Menu_CookieSettingsEnable(Handle menu, MenuAction action, int param1,
 			SetClientCookie(client, g_hCookie_Enabled, "0");
 			g_aPlayers[client].bHudEnabled = true;
 			PrintToChat(client, "[SM] Aim Names is ENABLED");
-			if (g_aPlayers[client].hHudTimer == INVALID_HANDLE
+			if (g_aPlayers[client].hHudTimer == null
 				&& (g_aPlayers[client].bHudEnabled)
 				&& (!g_bAdminOnly || (g_bAdminOnly && g_aPlayers[client].bIsAdmin))) {
 				g_aPlayers[client].hHudTimer = CreateTimer(g_fTimerInterval, Timer_SyncHud, client, TIMER_REPEAT);
@@ -461,7 +461,7 @@ public void Cvar_Changed(Handle convar, const char[] oldValue, const char[] newV
 			for (int x = 1; x <= MaxClients; x++) {
 				if (IsValidClient(x)
 					&& (g_aPlayers[x].bHudEnabled)
-					&& (g_aPlayers[x].hHudTimer == INVALID_HANDLE)) {
+					&& (g_aPlayers[x].hHudTimer == null)) {
 					g_aPlayers[x].hHudTimer = CreateTimer(g_fTimerInterval, Timer_SyncHud, x, TIMER_REPEAT);
 				}
 			}
