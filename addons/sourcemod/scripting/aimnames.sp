@@ -530,7 +530,7 @@ stock int TF2_GetPlayerCond(int client) {
 	return GetEntProp(client, Prop_Send, "m_nPlayerCond");
 }
 
-stock void ClearTimer(Handle timer) {
+stock void ClearTimer(Handle &timer) {
 	if (timer != INVALID_HANDLE) {
 		delete timer;
 	}
